@@ -21,7 +21,7 @@ const getUserByEmail = async (email) => {
 };
 
 const updateToMember = async (id) => {
-  await pool.query(`UPDATE users SET isMember = true WHERE id = $1`, [id]);
+  await pool.query(`UPDATE users SET isMember = TRUE WHERE id = $1`, [id]);
 };
 
 export { insertUser, getUserById, getUserByEmail, updateToMember };
