@@ -27,6 +27,6 @@ CREATE DATABASE members-only;
     title VARCHAR(255) NOT NULL,
     text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
-    user_id INTEGER REFERENCE users(id) ON DELETE CASCADE
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
    )
    ```
