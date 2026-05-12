@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/userController.js";
-import { isGuest } from "../middlewares/auth.js";
+import { isAuth, isGuest } from "../middlewares/auth.js";
 
 const userRouter = Router();
 
@@ -11,6 +11,6 @@ userRouter.get("/log-in", isGuest, userController.userLogInGet);
 userRouter.post("/log-in", userController.userLogInPost);
 
 userRouter.get("/", userController.userIndexGet);
-userRouter.get("/log-out", userController.userLogOutGet);
+userRouter.get("/log-out", isAuth,userController.userLogOutGet);
 
 export default userRouter;
