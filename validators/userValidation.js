@@ -33,4 +33,17 @@ const validateUserPost = [
   }),
 ];
 
-export { validateUserPost };
+const validateMessagePost = [
+  body("title")
+    .trim()
+    .notEmpty()
+    .withMessage("Title is required")
+    .isLength({ min: 1, max: 255 })
+    .withMessage("Title must be between 1 and 255 characters"),
+  body("text")
+    .trim()
+    .notEmpty()
+    .withMessage("Text is required"),
+];
+
+export { validateUserPost, validateMessagePost };
