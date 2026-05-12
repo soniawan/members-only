@@ -6,6 +6,7 @@ import session from "express-session";
 import "./config/passport.js"; 
 import passport from "passport";
 import userRouter from "./routes/userRouter.js";
+import messageRouter from "./routes/messageRouter.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ app.use(passport.session());
 
 // route
 app.use("/", userRouter);
+app.use("/", messageRouter);
 
 // errors
 app.use((err, req, res, next) => {
