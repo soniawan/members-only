@@ -6,7 +6,14 @@
     <title><%= title %></title>
 </head>
 <body>
-    <form action="/" method="post">
+    <% if (locals.errors) {%>
+  <ul>
+    <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+    <% }); %>
+  </ul>
+<% } %>
+    <form action="/messages" method="post">
         <input type="hidden" name="userId">
         <label for="title">Title</label>
         <input type="text" name="title" id="title" value="<%= locals.message ? message.title : '' %>">
