@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h1>please sign up</h1>
+
+    <% if (locals.errors) {%>
+  <ul>
+    <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+    <% }); %>
+  </ul>
+<% } %>
+    <form action="/sign-up" method="POST">
+      <label for="firstName">First Name</label>
+      <input
+        id="firstName"
+        name="firstName"
+        placeholder="firstName"
+        value="<%= locals.formData ? formData.firstName : '' %>" type="text"
+      />
+      <label for="lastName">Last Name</label>
+      <input id="lastName" name="lastName" placeholder="lastName" value="<%= locals.formData ? formData.lastName : '' %>" type="text" />
+      <label for="email">Email</label>
+      <input id="email" name="email" placeholder="email" value="<%= locals.formData ? formData.email : '' %>" type="email" />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" name="confirmPassword" type="password" />
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Have account, please <a href="/log-in">log in</a></p>
+  </body>
+</html>
