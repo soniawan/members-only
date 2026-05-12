@@ -6,7 +6,7 @@
     <title>Sign Up</title>
   </head>
   <body>
-    <h1>please sign up</h1>
+    <h1>Sign Up</h1>
 
     <% if (locals.errors) {%>
   <ul>
@@ -20,13 +20,12 @@
       <input
         id="firstName"
         name="firstName"
-        placeholder="firstName"
         value="<%= locals.formData ? formData.firstName : '' %>" type="text"
       />
       <label for="lastName">Last Name</label>
-      <input id="lastName" name="lastName" placeholder="lastName" value="<%= locals.formData ? formData.lastName : '' %>" type="text" />
+      <input id="lastName" name="lastName" value="<%= locals.formData ? formData.lastName : '' %>" type="text" />
       <label for="email">Email</label>
-      <input id="email" name="email" placeholder="email" value="<%= locals.formData ? formData.email : '' %>" type="email" />
+      <input id="email" name="email" value="<%= locals.formData ? formData.email : '' %>" type="email" />
       <label for="password">Password</label>
       <input id="password" name="password" type="password" />
       <label for="confirmPassword">Confirm Password</label>
@@ -34,6 +33,6 @@
       <button type="submit">Sign Up</button>
     </form>
 
-    <p>Have account, please <a href="/log-in">log in</a></p>
+    <p>Have account, <a href="/log-in">Log In</a>!</p>
   </body>
 </html>
