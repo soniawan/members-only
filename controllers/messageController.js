@@ -23,4 +23,13 @@ const messageCreatePost = [validateMessagePost, async (req, res, next) => {
   }
 }];
 
-export default { messageCreateGet, messageCreatePost };
+const messageListGet = async (req, res, next) => {
+  try {
+    const messages = await messageModel.getAllMessages();
+    res.render("index", { "messages": messages, user: req.user });
+  } catch (err) {
+    next(err)
+  }
+}
+
+export default { messageCreateGet, messageCreatePost, messageListGet };
