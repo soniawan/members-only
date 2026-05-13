@@ -10,7 +10,6 @@ userRouter.post("/sign-up", userController.userSignUpPost);
 userRouter.get("/log-in", isGuest, userController.userLogInGet);
 userRouter.post("/log-in", userController.userLogInPost);
 
-userRouter.get("/", userController.userIndexGet);
 userRouter.get("/log-out", isAuth,userController.userLogOutGet);
 
 export default userRouter;
