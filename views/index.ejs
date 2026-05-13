@@ -21,8 +21,35 @@
     <h1>WELCOME BACK <%= user.first_name %></h1>
 
     <a href="/messages">Create a message</a>
+
+    <div>
+      <% if (!locals.messages) { %>
+        <p>No messages yet</p>
+      <% } else { %>
+        <% for (const message of locals.messages) { %>
+          <div>
+            <h2><%= message.title %></h2>
+            <p><%= message.text %></p>
+            <p><%= message.created_at.toLocaleString('id-ID')%></p>
+          </div>
+        <% } %>
+      <% } %>
+    </div>
   <% } else { %>
     <h1>Hai Guest</h1>
+
+    <div>
+      <% if (!locals.messages) { %>
+        <p>No messages yet</p>
+      <% } else { %>
+        <% locals.messages.forEach(message => { %>
+          <div>
+            <h2><%= message.title %></h2>
+            <p><%= message.text %></p>
+          </div>
+        <% }); %>
+      <% } %>
+    </div>
   <%}%>
   </body>
 </html>
