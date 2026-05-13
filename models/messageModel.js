@@ -18,8 +18,12 @@ const getAllMessages = async () => {
   return rows;
 };
 
-const deleteMessage = async (messageId, userId) => {
-  await pool.query("DELETE FROM messages WHERE id = $1 AND user_id = $2", [messageId, userId])
+const deleteMessage = async (messageId, userId, isAdmin) => {
+  if (isAdmin) {
+    await pool.query("DELETE FROM messages WHERE id = $1", [messageId]);
+  } else {
+    await pool.query("DELETE FROM messages WHERE id = $1 AND user_id = $2", [messageId, userId]);
+  }
 }
 
 export default { insertMessage, getAllMessages, deleteMessage };
