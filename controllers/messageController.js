@@ -32,4 +32,14 @@ const messageListGet = async (req, res, next) => {
   }
 }
 
-export default { messageCreateGet, messageCreatePost, messageListGet };
+const messageDeletePost = async (req, res, next) => {
+  try {
+    const { messageId } = req.params;
+    await messageModel.deleteMessage(messageId, req.user.id, req.user.is_admin);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+}
+
+export default { messageCreateGet, messageCreatePost, messageListGet, messageDeletePost };
