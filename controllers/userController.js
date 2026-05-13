@@ -45,16 +45,6 @@ const userLogInPost = passport.authenticate("local", {
   failureMessage: true,
 });
 
-const userIndexGet = (req, res, next) => {
-  try {
-    res.render("index", {
-      user: req.user,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
 const userLogOutGet = (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
@@ -66,4 +56,4 @@ const userLogOutGet = (req, res, next) => {
   });
 }
 
-export default { userSignUpGet, userSignUpPost, userLogInGet, userLogInPost, userLogOutGet, userIndexGet };
+export default { userSignUpGet, userSignUpPost, userLogInGet, userLogInPost, userLogOutGet };
