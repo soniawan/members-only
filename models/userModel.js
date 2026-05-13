@@ -1,9 +1,9 @@
 import pool from "../db/pool.js";
 
-const insertUser = async (firstName, lastName, email, hashedPassword) => {
+const insertUser = async (firstName, lastName, email, hashedPassword, isAdmin = false) => {
   await pool.query(
-    `INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)`,
-    [firstName, lastName, email, hashedPassword],
+    `INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ($1, $2, $3, $4, $5)`,
+    [firstName, lastName, email, hashedPassword, isAdmin],
   );
 };
 
