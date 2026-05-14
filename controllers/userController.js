@@ -1,5 +1,5 @@
 import { matchedData, validationResult } from "express-validator";
-import { validateUserPost } from "../validators/userValidation.js";
+import { validateMemberPost, validateUserPost } from "../validators/userValidation.js";
 import bcrypt from "bcryptjs";
 import userModel from "../models/userModel.js";
 import passport from "passport";
@@ -56,4 +56,27 @@ const userLogOutGet = (req, res, next) => {
   });
 }
 
-export default { userSignUpGet, userSignUpPost, userLogInGet, userLogInPost, userLogOutGet };
+const userJoinMemberGet = (req, res) => res.render("members/join", {formData: req.body });
+
+const userJoinMemberPost = [
+  validateMemberPost, async (req, res, next) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render("members/join", {
+          title: "Join a Club",
+          errors: errors.array(),
+          formData: req.body
+        });
+      }
+
+      const { memberCode } = matchedData(req);
+      await userModel.updateToMember(req.user.id);
+      res.redirect("/");
+    } catch (err) {
+      next(err);
+    }
+  }
+]
+
+export default { userSignUpGet, userSignUpPost, userLogInGet, userLogInPost, userLogOutGet, userJoinMemberGet, userJoinMemberPost };
