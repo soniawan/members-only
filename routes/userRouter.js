@@ -12,4 +12,7 @@ userRouter.post("/log-in", userController.userLogInPost);
 
 userRouter.get("/log-out", isAuth,userController.userLogOutGet);
 
+userRouter.get("/membership", isAuth, userController.userJoinMemberGet);
+userRouter.post("/membership", isAuth, userController.userJoinMemberPost);
+
 export default userRouter;
