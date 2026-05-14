@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join Club</title>
+  </head>
+  <body>
+    <h1>Join a Club</h1>
+
+    <% if (locals.errors) {%>
+  <ul>
+    <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+    <% }); %>
+  </ul>
+<% } %>
+    <form action="/membership" method="POST">
+      <label for="memberCode">Member Code</label>
+      <input
+        id="memberCode"
+        name="memberCode"
+        value="<%= locals.formData ? formData.memberCode : '' %>" type="text"
+      />
+      
+      <button type="submit">Join</button>
+    </form>
+
+    <a href="/">Back to homepage</a>
+  </body>
+</html>
