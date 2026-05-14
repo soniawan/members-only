@@ -33,6 +33,20 @@ const validateUserPost = [
   }),
 ];
 
+const validateMemberPost = [
+  body("memberCode")
+    .trim()
+    .notEmpty()
+    .withMessage("Member code is required")
+    .isLength({ min: 8 })
+    .withMessage("Member code must be at least 8 characters")
+    .custom((value) => {
+      const clubPasscode = process.env.CLUB_PASSCODE;
+      if (clubPasscode !== value) throw new Error("Member code not match");
+      return true;
+    }),
+];
+
 const validateMessagePost = [
   body("title")
     .trim()
@@ -46,4 +60,4 @@ const validateMessagePost = [
     .withMessage("Text is required"),
 ];
 
-export { validateUserPost, validateMessagePost };
+export { validateUserPost, validateMemberPost, validateMessagePost };
