@@ -1,4 +1,6 @@
 import pool from "../db/pool.js";
+import "dotenv";
+
 
 const insertUser = async (firstName, lastName, email, hashedPassword, isAdmin = false) => {
   await pool.query(
@@ -20,7 +22,7 @@ const getUserByEmail = async (email) => {
 };
 
 const updateToMember = async (id) => {
-  await pool.query(`UPDATE users SET isMember = TRUE WHERE id = $1`, [id]);
+  await pool.query(`UPDATE users SET is_member = TRUE WHERE id = $1`, [id]);
 };
 
 export default { insertUser, getUserById, getUserByEmail, updateToMember };
