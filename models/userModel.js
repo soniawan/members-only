@@ -1,8 +1,13 @@
 import pool from "../db/pool.js";
 import "dotenv";
 
-
-const insertUser = async (firstName, lastName, email, hashedPassword, isAdmin = false) => {
+const insertUser = async (
+  firstName,
+  lastName,
+  email,
+  hashedPassword,
+  isAdmin = false,
+) => {
   await pool.query(
     `INSERT INTO users (first_name, last_name, email, password, is_admin) VALUES ($1, $2, $3, $4, $5)`,
     [firstName, lastName, email, hashedPassword, isAdmin],
