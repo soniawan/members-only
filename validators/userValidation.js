@@ -16,7 +16,7 @@ const validateUserPost = [
     .withMessage("Email is required")
     .isEmail()
     .withMessage("Invalid email format")
-    .normalizeEmail({gmail_remove_dots: false})
+    .normalizeEmail({ gmail_remove_dots: false })
     .custom(async (value) => {
       const user = await userModel.getUserByEmail(value);
       if (user) throw new Error("Email already exists");
@@ -54,10 +54,7 @@ const validateMessagePost = [
     .withMessage("Title is required")
     .isLength({ min: 1, max: 255 })
     .withMessage("Title must be between 1 and 255 characters"),
-  body("text")
-    .trim()
-    .notEmpty()
-    .withMessage("Text is required"),
+  body("text").trim().notEmpty().withMessage("Text is required"),
 ];
 
 export { validateUserPost, validateMemberPost, validateMessagePost };
