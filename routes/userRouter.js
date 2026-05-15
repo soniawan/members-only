@@ -10,7 +10,7 @@ userRouter.post("/sign-up", userController.userSignUpPost);
 userRouter.get("/log-in", isGuest, userController.userLogInGet);
 userRouter.post("/log-in", userController.userLogInPost);
 
-userRouter.get("/log-out", isAuth,userController.userLogOutGet);
+userRouter.get("/log-out", isAuth, userController.userLogOutGet);
 
 userRouter.get("/membership", isAuth, userController.userJoinMemberGet);
 userRouter.post("/membership", isAuth, userController.userJoinMemberPost);
